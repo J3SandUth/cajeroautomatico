@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Cajero Automático</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        .saldo-display {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .btn-operation {
+            padding: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .nav-button {
+            text-decoration: none;
+        }
+    </style>
+</h:head>
+<h:body class="bg-light">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Bienvenido, #{loginbean.clienteActual.nombre}</h3>
+            </div>
+            <div class="card-body">
+                <div class="saldo-display text-center">
+                    <h4>Saldo Disponible</h4>
+                    <h2 class="text-success">L. #{loginbean.clienteActual.saldo}</h2>
+                </div>
+
+                <h:outputText value="#{cajerobean.mensaje}"
+                              styleClass="alert alert-info"
+                              rendered="#{not empty cajerobean.mensaje}"/>
+
+                <div class="d-grid gap-2">
+                    <h:button value="Depositar" outcome="deposito"
+                              styleClass="btn btn-success btn-operation nav-button" />
+                    <h:button value="Retirar" outcome="retiro"
+                              styleClass="btn btn-warning btn-operation nav-button" />
+                    <h:button value="Ayuda" outcome="ayuda"
+                              styleClass="btn btn-info btn-operation nav-button" />
+                    <h:button value="Cerrar Sesion" outcome="login"
+                              styleClass="btn btn-danger btn-operation nav-button" />
+                </div>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>

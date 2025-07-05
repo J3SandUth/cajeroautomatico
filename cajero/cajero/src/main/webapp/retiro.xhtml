@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+   <title>Retiro</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+   <style>
+      .operation-card {
+         max-width: 500px;
+         margin: 0 auto;
+         margin-top: 2rem;
+      }
+   </style>
+</h:head>
+<h:body class="bg-light">
+   <div class="container">
+      <div class="card operation-card">
+         <div class="card-header bg-warning text-white">
+            <h3 class="mb-0">Realizar Retiro</h3>
+         </div>
+         <div class="card-body">
+            <h:form>
+               <div class="mb-3">
+                  <h:outputLabel value="Monto a retirar (L.):" styleClass="form-label fw-bold"/>
+                  <h:inputText value="#{cajerobean.monto}"
+                               styleClass="form-control"
+                               required="true"
+                               requiredMessage="Debe ingresar un monto"/>
+               </div>
+
+               <div class="d-grid gap-2">
+                  <h:commandButton value="Confirmar Retiro"
+                                   action="#{cajerobean.realizarRetiro(loginbean.clienteActual)}"
+                                   styleClass="btn btn-warning"/>
+                  <h:commandButton value="Volver al Menú"
+                                   action="index.xhtml?faces-redirect=true"
+                                   styleClass="btn btn-secondary"/>
+               </div>
+
+               <h:outputText value="#{cajerobean.mensaje}"
+                             styleClass="alert alert-info mt-3"
+                             rendered="#{not empty cajerobean.mensaje}"/>
+            </h:form>
+         </div>
+      </div>
+   </div>
+</h:body>
+</html>
